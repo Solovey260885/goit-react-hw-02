@@ -6,18 +6,18 @@ import Options from "../Options/Options";
 import Notification from "../Notification/Notification";
 import css from "../App/App.module.css";
 
+const initialValues = {
+  good: 0,
+  neutral: 0,
+  bad: 0,
+};
+
+const getInitialValues = () => {
+  const savedValues = window.localStorage.getItem("my-values");
+  return savedValues !== null ? JSON.parse(savedValues) : initialValues;
+};
+
 export default function App() {
-  const initialValues = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
-
-  const getInitialValues = () => {
-    const savedValues = window.localStorage.getItem("my-values");
-    return savedValues !== null ? JSON.parse(savedValues) : 0;
-  };
-
   const [values, setValues] = useState(getInitialValues);
 
   const updateFeedback = (feedbackType) => {
